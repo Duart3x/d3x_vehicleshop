@@ -7,6 +7,10 @@ Auto mode (everyone can buy vehicles from the dealer)
 
 No need to download another resource
 
+## Problems
+
+There are some parts of the script that are not translated to english, they are in portuguese
+
 ## Download & Installation
 
 - Import d3x_vehicleshop.sql in your database
