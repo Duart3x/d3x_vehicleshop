@@ -297,9 +297,9 @@ Citizen.CreateThread(function ()
 end)
 
 Citizen.CreateThread(function() 
-	local ped = PlayerPedId()
 	while true do
-		local coords      = GetEntityCoords(ped)
+		Citizen.Wait(0)
+		local coords      = GetEntityCoords(PlayerPedId())
 		for k,v in pairs(Config.Zones) do
 			if v.Type == 36 then
 				if Vdist(coords.x,coords.y,coords.z, v.Pos.x,v.Pos.y,v.Pos.z) <= 8 then
@@ -307,7 +307,7 @@ Citizen.CreateThread(function()
 				end
 			end
 		end
-		Citizen.Wait(0)
+		
 	end
 	
 end)
