@@ -50,7 +50,7 @@ $(document).ready(function(){
                                     </div>
                                     <div class="card-footer bg-white border-0 ">
                                         <button type="button" id="action1" data-value="buy" data-model="`+ car.model +`" class="btn btn-danger w-auto btn-lg buy">Buy</button>
-                                        <button type="button" id="action2" data-value="test-drive" data-model="`+ car.model +`" class="btn btn-success w-auto float-right btn-lg tes-drive">Test Drive</button>
+                                        <button type="button" id="action2" data-value="test-drive" data-model="`+ car.model +`" class="btn btn-success w-auto float-right btn-lg test-drive">Test Drive</button>
                                     </div>
                                 </div>
                             </div>`
