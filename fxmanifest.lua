@@ -27,9 +27,12 @@ client_scripts {
 ui_page "HTML/ui.html"
 
 files {
-    "HTML/ui.html",
     "HTML/ui.css",
+    "HTML/ui.html",
 	"HTML/ui.js",
+	--"HTML/ui_br.html",
+	--"HTML/ui_br.js",
+
 
 	"HTML/imgs/4c.jpg",
 	"HTML/imgs/i8.png",
