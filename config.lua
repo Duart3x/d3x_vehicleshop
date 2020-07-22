@@ -4,7 +4,7 @@ Config.MarkerColor                = { r = 255, g = 0, b = 0 }
 Config.EnableOwnedVehicles        = true
 Config.ResellPercentage           = 50
 
-Config.Locale                     = 'br'
+Config.Locale                     = 'en'
 
 Config.LicenseEnable = false -- require people to own drivers license when buying vehicles? Only applies if EnablePlayerManagement is disabled. Requires esx_license
 
@@ -15,7 +15,7 @@ Config.PlateNumbers  = 3
 Config.PlateUseSpace = true
 
 Config.Zones = {
-
+	
 	ShopEntering = {
 		Pos   = { x = -43.51, y = -1105.47, z = 26.20 },
 		Size  = { x = 1.5, y = 1.5, z = 1.0 },

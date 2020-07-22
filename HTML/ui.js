@@ -30,27 +30,27 @@ $(document).ready(function(){
         $('#price_max').attr('value',result[result.length -1].price) 
         $("#shopmenu").show();
         $("#wrapper").html(' ');
+        mpage = Math.ceil(result.length / 6)
             for (let n_page = 0; n_page < Math.ceil(result.length / 6); n_page++) {
-                mpage = Math.ceil(result.length / 6)
+                count = 0;
                 html += `
                 <div id="page-`+ (n_page+1) +`">
                 <div class="row row-cols-1 row-cols-md-3">`
-                
-                while (index < result.length && count <= 6) {
-
+                while (index < result.length && count < 6) {
+                    
                     var car = result[index];
-
+                    
                     html += `<div class="col-4 mb-4">
                                 <div class="card h-100">
-                                    <img src="imgs/`+car.imglink+`" class="card-img-top" alt="`+car.name+`">
+                                    <img src="`+car.imglink+`" class="card-img-top" alt="`+car.name+`">
                                     <div class="card-body">
                                         <h5 class="card-title">`+car.name+`</h5>
-                                        <p class="card-text">Brand: <b>`+car.category+`</b></p>
+                                        <p class="card-text">Brand: <b>`+car.categoryLabel+`</b></p>
                                         <p class="card-text">Price: <b>`+car.price+`€</b></p>
                                     </div>
                                     <div class="card-footer bg-white border-0 ">
                                         <button type="button" id="action1" data-value="buy" data-model="`+ car.model +`" class="btn btn-danger w-auto btn-lg buy">Buy</button>
-                                        <button type="button" id="action2" data-value="test-drive" data-model="`+ car.model +`" class="btn btn-success w-auto float-right btn-lg tes-drive">Test Drive</button>
+                                        <button type="button" id="action2" data-value="test-drive" data-model="`+ car.model +`" class="btn btn-success w-auto float-right btn-lg test-drive">Test Drive</button>
                                     </div>
                                 </div>
                             </div>`
@@ -66,10 +66,10 @@ $(document).ready(function(){
                     $("#page-" +(n_page + 1)).hide();
                 }
 
-                count = 0;
+                
 
             }
-             $('#n-pag').html(page+ '/' + mpage)
+            $('#n-pag').html(page+ '/' + mpage)
     }
 
     $("#body").on('click', ':button', function () {

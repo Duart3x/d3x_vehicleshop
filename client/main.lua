@@ -21,6 +21,7 @@ local Categories              = {}
 local Vehicles                = {}
 local LastVehicles            = {}
 local CurrentVehicleData      = nil
+local testdrive_timer 		  = 40
 
 ESX                           = nil
 
@@ -76,11 +77,6 @@ function StartShopRestriction()
 	end)
 
 end
-RegisterCommand("pos", function(source,args,rawCommand) 
-	local ped = GetPlayerPed(source)
-	local coords = GetEntityCoords(ped)
-	print('x = '..coords.x..', y = '..coords.y..', z = '..coords.z.. ', h = '.. GetEntityHeading(ped)) 
-end, true)
 
 RegisterNUICallback('TestDrive', function(data, cb) 
 	SetNuiFocus(false, false)
@@ -90,25 +86,25 @@ RegisterNUICallback('TestDrive', function(data, cb)
 	local playerpos = GetEntityCoords(playerPed)
 	
 	IsInShopMenu = false
-	exports['mythic_notify']:PersistentHudText('START','waiting','vermelho','Aguarde enquanto carregamos o seu veículo!')
+	exports['mythic_notify']:PersistentHudText('START','waiting','vermelho',_U('wait_vehicle'))
 	ESX.Game.SpawnVehicle(model, vector3(-1733.25, -2901.43, 13.94), 326, function(vehicle)
 		exports['mythic_notify']:PersistentHudText('END','waiting')
 
 		TaskWarpPedIntoVehicle(playerPed, vehicle, -1)
 		SetVehicleNumberPlateText(vehicle, "TEST")
-		ESX.ShowNotification("Tens ~g~40~w~ segundos para fazer o teste drive!")
+		ESX.ShowNotification(_U('testdrive_notification',testdrive_timer))
 		Citizen.CreateThread(function () 
-			local counter = 40
+			local counter = testdrive_timer
 			
 			while counter > 0 do 
-				exports['mythic_notify']:DoCustomHudText('branco', 'Teste drive acaba em: '.. counter .. ' segundos!',700)
+				exports['mythic_notify']:DoCustomHudText('branco', _U('testdrive_timer',counter),700)
 				counter = counter -1
 				Citizen.Wait(1000)
 			end
 			DeleteVehicle(vehicle)
 			SetEntityCoords(playerPed, playerpos, false, false, false, false)
 
-			ESX.ShowNotification("Teste Drive acabado!")
+			ESX.ShowNotification(_U('testdrive_finished'))
 		end)
 
 	end)
@@ -120,7 +116,7 @@ RegisterNUICallback('BuyVehicle', function(data, cb)
     local model = data.model
 	local playerPed = PlayerPedId()
 	IsInShopMenu = false
-	exports['mythic_notify']:PersistentHudText('START','waiting','vermelho','Aguarde enquanto carregamos o seu veículo!')
+	exports['mythic_notify']:PersistentHudText('START','waiting','vermelho',_U('wait_vehicle'))
 
     ESX.TriggerServerCallback('d3x_vehicleshop:buyVehicle', function(hasEnoughMoney)
 		exports['mythic_notify']:PersistentHudText('END','waiting')
@@ -154,10 +150,9 @@ RegisterNUICallback('CloseMenu', function()
     IsInShopMenu = false
 end)
 
-RegisterCommand('fecharmenu', function() 
+RegisterCommand('closeshop', function() 
 	SetNuiFocus(false, false)
     IsInShopMenu = false
-
 end)
 
 function OpenShopMenu()
@@ -212,9 +207,9 @@ AddEventHandler('d3x_vehicleshop:hasEnteredMarker', function (zone)
 				plate = ESX.Math.Trim(GetVehicleNumberPlateText(vehicle))
 	
 				CurrentAction     = 'resell_vehicle'
-				CurrentActionMsg  = 'Pressione ~g~[E]~w~ para vender por ' .. ESX.Math.GroupDigits(resellPrice)
-				ESX.ShowHelpNotification('Pressione ~g~[E]~w~ para vender por ' .. ESX.Math.GroupDigits(resellPrice)..'€' )
-	
+				CurrentActionMsg  = _U('sell_vehicle',resellPrice)
+				ESX.ShowHelpNotification(_U('sell_vehicle',resellPrice) )
+				
 				CurrentActionData = {
 					vehicle = vehicle,
 					label = vehicleData.name,
@@ -263,7 +258,7 @@ Citizen.CreateThread(function ()
 	SetBlipAsShortRange(blip, true)
 
 	BeginTextCommandSetBlipName("STRING")
-	AddTextComponentString("Stand Automóvel")
+	AddTextComponentString("Vehicle Shop")
 	EndTextCommandSetBlipName(blip)
 end)
 
@@ -297,17 +292,18 @@ Citizen.CreateThread(function ()
 end)
 
 Citizen.CreateThread(function() 
-	local ped = PlayerPedId()
+	
 	while true do
-		local coords      = GetEntityCoords(ped)
+		Citizen.Wait(0)
+		local coords      = GetEntityCoords(PlayerPedId())
 		for k,v in pairs(Config.Zones) do
 			if v.Type == 36 then
 				if Vdist(coords.x,coords.y,coords.z, v.Pos.x,v.Pos.y,v.Pos.z) <= 8 then
-					Draw3DText(v.Pos.x, v.Pos.y, v.Pos.z, "~g~[E]~w~ Ver catálogo",0.4)
+					Draw3DText(v.Pos.x, v.Pos.y, v.Pos.z, _U('watch_catalog'),0.4)
 				end
 			end
 		end
-		Citizen.Wait(0)
+		
 	end
 	
 end)
