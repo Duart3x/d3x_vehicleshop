@@ -1,5 +1,5 @@
 Locales['en'] = {
-    ['vehicle_purchased']   = 'Vheicle bought with success!',
+    ['vehicle_purchased']   = 'Vehicle bought with success!',
     ['not_enough_money'] = 'You don\'t have enough money!',
     ['shop_menu'] = 'Press ~g~[E]~w~ to watch the catalog',
     ['sell_vehicle'] = 'Press ~g~[E]~w~ to sell ~g~%s~s~ $',
