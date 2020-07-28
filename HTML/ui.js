@@ -1,7 +1,7 @@
 function CloseShop() {
     $("#wrapper").html('');
 	$("#shopmenu").hide();
-    $.post('http://d3x_vehicleshop/CloseMenu', JSON.stringify({}));
+    $.post('http://d3x_vehicleshop/CloseMenu');
 }
 
 

@@ -87,6 +87,7 @@ RegisterNUICallback('TestDrive', function(data, cb)
 	
 	IsInShopMenu = false
 	exports['mythic_notify']:PersistentHudText('START','waiting','vermelho',_U('wait_vehicle'))
+
 	ESX.Game.SpawnVehicle(model, vector3(-1733.25, -2901.43, 13.94), 326, function(vehicle)
 		exports['mythic_notify']:PersistentHudText('END','waiting')
 
@@ -145,10 +146,12 @@ RegisterNUICallback('BuyVehicle', function(data, cb)
 	end, model)
 end)
 
-RegisterNUICallback('CloseMenu', function()
+RegisterNUICallback('CloseMenu', function(data, cb)
     SetNuiFocus(false, false)
-    IsInShopMenu = false
+	IsInShopMenu = false
+	cb(false)
 end)
+
 
 RegisterCommand('closeshop', function() 
 	SetNuiFocus(false, false)
@@ -240,7 +243,7 @@ AddEventHandler('onResourceStop', function(resource)
 			DeleteShopInsideVehicles()
 
 			local playerPed = PlayerPedId()
-
+			
 			FreezeEntityPosition(playerPed, false)
 			SetEntityVisible(playerPed, true)
 			SetEntityCoords(playerPed, Config.Zones.ShopEntering.Pos.x, Config.Zones.ShopEntering.Pos.y, Config.Zones.ShopEntering.Pos.z)

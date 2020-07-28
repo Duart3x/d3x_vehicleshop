@@ -42,8 +42,6 @@ MySQL.ready(function()
 	TriggerClientEvent('d3x_vehicleshop:sendCategories', -1, Categories)
 	TriggerClientEvent('d3x_vehicleshop:sendVehicles', -1, Vehicles)
 end)
-	
-
 
 RegisterServerEvent('d3x_vehicleshop:setVehicleOwned')
 AddEventHandler('d3x_vehicleshop:setVehicleOwned', function (vehicleProps)
