@@ -6,10 +6,6 @@ Auto mode (everyone can buy vehicles from the dealer)
 
 Mythic Notify -> https://github.com/JayMontana36/mythic_notify
 
-## Problems
-
-There are some parts of the script that are not translated to english, they are in portuguese
-
 ## Download & Installation
 
 - Import d3x_vehicleshop.sql in your database
