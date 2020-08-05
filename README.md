@@ -1,5 +1,4 @@
 # d3x_vehicleshop
-Resource developed by Duart3x https://github.com/Duart3x
 
 ## Requirements
 
