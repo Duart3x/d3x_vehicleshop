@@ -31,21 +31,13 @@ client_scripts {
 ui_page "HTML/ui.html"
 
 files {
-    "HTML/ui.css",
-    "HTML/ui.html",
+	"HTML/ui.css",
+	"HTML/ui.html",
 	"HTML/ui.js",
 	--"HTML/ui_br.html",
 	--"HTML/ui_br.js",
-
-
-	"HTML/imgs/4c.jpg",
-	"HTML/imgs/i8.png",
-	"HTML/imgs/lamboavj.png",
-	"HTML/imgs/ninja.png",
-	"HTML/imgs/urus.png",
-	"HTML/imgs/panamera.png",
-	"HTML/imgs/g65.png",
-	"HTML/imgs/skyline.png",
+	"HTML/imgs/*.png",
+	"HTML/imgs/*.jpg"
 }
 
 dependency 'es_extended'
