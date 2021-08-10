@@ -288,7 +288,7 @@ Citizen.CreateThread(function ()
 
 		local coords = GetEntityCoords(PlayerPedId())
 
-		if(Config.Zones.ResellVehicle.Type ~= -1 and GetDistanceBetweenCoords(coords, Config.Zones.ResellVehicle.Pos.x, Config.Zones.ResellVehicle.Pos.y, Config.Zones.ResellVehicle.Pos.z, true) < Config.DrawDistance) then
+		if(Config.Zones.ResellVehicle.Type ~= -1 and #(coords - Config.Zones.ResellVehicle.Pos) < Config.DrawDistance) then
 			DrawMarker(Config.Zones.ResellVehicle.Type, Config.Zones.ResellVehicle.Pos.x, Config.Zones.ResellVehicle.Pos.y, Config.Zones.ResellVehicle.Pos.z, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Config.Zones.ResellVehicle.Size.x, Config.Zones.ResellVehicle.Size.y, Config.Zones.ResellVehicle.Size.z, Config.MarkerColor.r, Config.MarkerColor.g, Config.MarkerColor.b, 100, false, true, 2, false, false, false, false)
 		end
 	end
@@ -322,7 +322,7 @@ Citizen.CreateThread(function ()
 		local currentZone = nil
 
 		for k,v in pairs(Config.Zones) do
-			if(GetDistanceBetweenCoords(coords, v.Pos.x, v.Pos.y, v.Pos.z, true) < 3.5) then
+			if(#(coords - v.Pos) < 3.5) then
 				isInMarker  = true
 				currentZone = k
 			end
