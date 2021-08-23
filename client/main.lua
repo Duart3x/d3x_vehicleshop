@@ -301,7 +301,7 @@ Citizen.CreateThread(function()
 		local coords      = GetEntityCoords(PlayerPedId())
 		for k,v in pairs(Config.Zones) do
 			if v.Type == 36 then
-				if Vdist(coords.x,coords.y,coords.z, v.Pos.x,v.Pos.y,v.Pos.z) <= 8 then
+				if #(coords - v.Pos) <= 8 then
 					Draw3DText(v.Pos.x, v.Pos.y, v.Pos.z, _U('watch_catalog'),0.4)
 				end
 			end
