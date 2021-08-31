@@ -84,13 +84,12 @@ RegisterNUICallback('TestDrive', function(data, cb)
 	local model = data.model
 	local playerPed = PlayerPedId()
 	local playerpos = GetEntityCoords(playerPed)
+	local coords = vector3(-1733.25, -2901.43, 13.94)
 	
 	IsInShopMenu = false
-	exports['mythic_notify']:PersistentHudText('START','waiting','vermelho',_U('wait_vehicle'))
-
-	ESX.Game.SpawnVehicle(model, vector3(-1733.25, -2901.43, 13.94), 326, function(vehicle)
-		exports['mythic_notify']:PersistentHudText('END','waiting')
-
+	exports['mythic_notify']:PersistentHudText('start','inform','vermelho',_U('wait_vehicle'))
+	ESX.Game.SpawnVehicle(model, coords, 330.0, function(vehicle)
+		exports['mythic_notify']:PersistentHudText('end','inform')
 		TaskWarpPedIntoVehicle(playerPed, vehicle, -1)
 		SetVehicleNumberPlateText(vehicle, "TEST")
 		ESX.ShowNotification(_U('testdrive_notification',testdrive_timer))
@@ -109,6 +108,7 @@ RegisterNUICallback('TestDrive', function(data, cb)
 		end)
 
 	end)
+	SetEntityCoords(playerPed, coords)
 end)
 
 RegisterNUICallback('BuyVehicle', function(data, cb)
